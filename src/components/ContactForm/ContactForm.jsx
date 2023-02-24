@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import { nanoid } from 'nanoid';
@@ -67,6 +67,6 @@ export const ContactForm = ({ onSubmit }) => {
   );
 };
 
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
