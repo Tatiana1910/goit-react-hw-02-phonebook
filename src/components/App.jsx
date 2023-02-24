@@ -2,7 +2,13 @@ import { GlobalStyle } from './GlobalStyle';
 import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactItem } from './ContactItem/ContactItem';
-import { Container, Title } from './App.styled';
+import {
+  Container,
+  Title,
+  SectionStyle,
+  Section,
+  SectionTitle,
+} from './App.styled';
 
 export class App extends Component {
   state = {
@@ -13,8 +19,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = newContact => {
@@ -37,12 +41,19 @@ export class App extends Component {
       <Container>
         <GlobalStyle />
         <Title>Phonebook</Title>
-        <ContactForm onSubmit={this.addContact} />
-        <h2>Contacts</h2>
-        <ContactItem
-          contacts={this.state.contacts}
-          onDeleteContact={this.deleteContact}
-        />
+        <SectionStyle>
+          <Section>
+            <SectionTitle>Add contacts</SectionTitle>
+            <ContactForm onSubmit={this.addContact} />
+          </Section>
+          <Section>
+            <SectionTitle>Contacts</SectionTitle>
+            <ContactItem
+              contacts={this.state.contacts}
+              onDeleteContact={this.deleteContact}
+            />
+          </Section>
+        </SectionStyle>
       </Container>
     );
   }
