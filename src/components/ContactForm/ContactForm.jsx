@@ -54,12 +54,12 @@ export const ContactForm = ({ onSubmit }) => {
         <StyledLabel>
           Name
           <StyledInput type="text" name="name" />
-          <ErrorMessage name="name" />
+          <ErrorMessage name="name" component="div" />
         </StyledLabel>
         <StyledLabel>
           Number
-          <StyledInput type="text" name="number" />
-          <ErrorMessage name="number" />
+          <StyledInput type="tel" name="number" />
+          <ErrorMessage name="number" component="div" />
         </StyledLabel>
         <StyledButton type="submit">Add contacts</StyledButton>
       </StyledForm>

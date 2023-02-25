@@ -1,7 +1,7 @@
 import { GlobalStyle } from './GlobalStyle';
 import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
-import { ContactItem } from './ContactItem/ContactItem';
+import { ContactList } from './ContactList/ContactList';
 import {
   Container,
   Title,
@@ -9,6 +9,7 @@ import {
   Section,
   SectionTitle,
 } from './App.styled';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -36,6 +37,18 @@ export class App extends Component {
     }));
   };
 
+  filterContacts = event => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
+  getFilteredContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
   render() {
     return (
       <Container>
@@ -48,8 +61,9 @@ export class App extends Component {
           </Section>
           <Section>
             <SectionTitle>Contacts</SectionTitle>
-            <ContactItem
-              contacts={this.state.contacts}
+            <Filter value={this.state.filter} onChange={this.filterContacts} />
+            <ContactList
+              contacts={this.getFilteredContacts()}
               onDeleteContact={this.deleteContact}
             />
           </Section>
